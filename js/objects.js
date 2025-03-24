@@ -39,7 +39,7 @@ circle2.draw();
 //Every object in JS has a property called 'constructor' that references the function that was used to create the object
 console.log(circle2.constructor); // returns the 'Circle' constructor function
 console.log(circle1.constructor); //returns the internal JS object constructor function
-let x = {}; //is the same as 'let x = new Object()'
+let obj = {}; //is the same as 'let obj = new Object()'
 new String(); //string constructor but we use string literals '',"",``
 new Boolean(); //but we use boolean literals true,false
 new Number(); //but we use number literals 1,2,3...
