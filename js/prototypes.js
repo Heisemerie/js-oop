@@ -1,6 +1,8 @@
 //Inheritance
 //Enables an object to take on the props and methods of another object aiding reusability
 //there are two types of inheritance; classical and prototypical
+//We implement inheritance in Classes by extending classes
+//We implement inheritance in Objects by using a prototype property (__proto__)) to link parent and children objects
 
 //Prototypical Inheritance
 //JS uses prototypical inhersitance because it only has objects and no classes
@@ -18,7 +20,7 @@ console.log(
 
 //Multi-level Inheritance
 const myArray = [];
-console.log("myArray Prototype", myArray.__proto__); //'__proto__' used to access prototype but is deprecated
+console.log("myArray.__proto__", myArray.__proto__); //'__proto__' used to access prototype but is deprecated
 //myArray inherits from 'arrayBase'('myArray.__proto__') which inherits from 'objectBase' ('objectBase.__proto__') from earlier (ie multi-level inheritance)
 //myArray => arrayBase (contains 'Array' constructor & array methods) => objectBase (contains 'Object' constructor and object methods)
 const circle5 = new Circle(); //constructor from objects.js file
@@ -51,18 +53,20 @@ function Square(length) {
   this.length = length;
 }
 const square = new Square();
-Square.prototype; //this is the object that will be used as the parent for the objects created by the Square constructor (squareBase)
-//in other words; square.__proto__ and Square.prototype are equal (squareBase)
+console.log("Square.prototype", Square.prototype); //this is the object that will be used as the parent for the objects created by the Square constructor (squareBase)
+console.log(
+  "Constructor and object prototype equal: ",
+  Object.getPrototypeOf(square) === Square.prototype
+); //in other words; square.__proto__ and Square.prototype are equal (squareBase)
 
 //Prototype vs Instance Members
 function Circles(radius) {
   this.radius = radius;
   this.location = { x: 2, y: 2 };
-  // this.draw = function () {
-  //   console.log("Constructor function draw");
-  // };
-}
-//the draw method will be repeated in c1 and c2, to save memory, add the draw method to the cirlceBase prototype (because JS objects are dynamic)
+  /*this.draw = function () {
+    console.log("Constructor function draw");
+  };*/
+} //the draw method will be repeated in c1 and c2, to save memory, add the draw method to the cirlceBase prototype (because JS objects are dynamic)
 Circles.prototype.draw = function () {
   console.log("Constructor function draw");
 };
@@ -81,9 +85,9 @@ console.log(c1.toString());
 //how to iterate over instance properties vs prototype properties;
 console.log("Object.keys()", Object.keys(c1)); //only returns instance members
 for (const key in c1) {
-  console.log("for...in: ", key); //for...in returns all members (instance + prototype)
+  console.log("for...in: ", key); //for...in returns all members added by you (instance + prototype)
 }
-console.log(c1.hasOwnProperty("draw")); //hasOwnProperty is used to check instance/prototype properties
+console.log("hasOwnProperty", c1.hasOwnProperty("draw")); //hasOwnProperty is used to check instance/prototype properties
 
 //Avoid Extending the Built-in Objects
 //Don't modify the built-in objects in JS
