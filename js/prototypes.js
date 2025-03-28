@@ -48,7 +48,7 @@ delete person.name;
 console.log(person); //logs { name: "Ejike" }
 
 //Constructor Prototypes
-//Every constructor function has a prototype property (because functions are objects)
+//Every constructor function has a prototype property (because functions are objects) and are intended to be used as the prototype of any instance object created with the function
 function Square(length) {
   this.length = length;
 }
